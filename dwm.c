@@ -955,7 +955,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 	text = p;
 
 	w += 2; /* 1px padding on both sides */
-	ret = x = m->ww - w - stw;
+	ret = x = m->ww - w;
 
 	drw_setscheme(drw, scheme[LENGTH(colors)]);
 	drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
@@ -1016,7 +1016,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 	if (!isCode) {
 		w = TEXTW(text) - lrpad / 2 + 2;
 
-		drw_text(drw, x, 0, w, bh, lrpad / 2 - 2, text, 0);
+		drw_text(drw, x - stw - lrpad / 2 + 2, 0, w, bh, lrpad / 2 - 2, text, 0);
 	}
 
 	drw_setscheme(drw, scheme[SchemeNorm]);
@@ -2825,7 +2825,7 @@ updatesystray(void)
 		XMapRaised(dpy, i->win);
 		w += systrayspacing;
 		i->x = w;
-		XMoveResizeWindow(dpy, i->win, i->x, 0, i->w, i->h);
+		XMoveResizeWindow(dpy, i->win, i->x, 2, i->w, i->h - 4);
 		w += i->w;
 		if (i->mon != m)
 			i->mon = m;
