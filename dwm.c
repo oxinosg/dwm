@@ -949,7 +949,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 		}
 	}
 	if (!isCode)
-		w += TEXTW(text) - lrpad / 2;
+		w += TEXTW(text) - lrpad;
 	else
 		isCode = 0;
 	text = p;
