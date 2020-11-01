@@ -23,6 +23,7 @@ Patches applied
  - [swallow](https://dwm.suckless.org/patches/swallow/) - This patch adds "window swallowing" to dwm
  - [systray](https://dwm.suckless.org/patches/systray/) - Simple system tray implementation
  - [tile](https://dwm.suckless.org/patches/ru_gaps/) - This patch adds gaps like tilegap that are resizeable at runtime.
+ - [urgent border](https://dwm.suckless.org/patches/urgentborder/) This patch makes borders of "urgent" windows a different color.
  - [viewontag](https://dwm.suckless.org/patches/viewontag/) - Follow a window to the tag it is being moved to.
  - [warp](https://dwm.suckless.org/patches/warp/) - This patch warps the mouse cursor to the center of the currently focused window or screen when the mouse cursor is (a) on a different screen or (b) on top of a different window.
  - [zoomswap](https://dwm.suckless.org/patches/zoomswap/) - This patch changes the behavior of zoom, to keep all other windows as they are
