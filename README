@@ -11,6 +11,7 @@ Patches applied
  - [dwmc](https://dwm.suckless.org/patches/dwmc/) - Simple client to communicate with dwm.
  - [fakefullscreen](https://dwm.suckless.org/patches/fakefullscreen/) - Only allow clients to "fullscreen" into space currently given to them.
  - [fibonacci](https://dwm.suckless.org/patches/fibonacci/) - This patch adds two new layouts (spiral and dwindle) that arranges all windows in Fibonacci tiles.
+ - [float border color](https://dwm.suckless.org/patches/float_border_color/) - Simple client to communicate with dwm.
  - [focusonclick](https://dwm.suckless.org/patches/focusonclick/) - Switch focus only by mouse click.
  - [gaplessgrid](https://dwm.suckless.org/patches/gaplessgrid/) - Layout for dwm, which arranges the windows in a grid
  - [hidevacanttags](https://dwm.suckless.org/patches/hide_vacant_tags/) - This patch prevents dwm from drawing tags with no clients on the bar.

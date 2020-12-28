@@ -44,11 +44,11 @@ static const char col_cyan[]        = "#005577";
 static const char col_cyan2[]       = "#0092cc";
 static const char col_urgborder[]   = "#ff0000";
 
-static const char *colors[][3]      = {
+static const char *colors[][4]      = {
   /*               fg         bg         border   */
-  [SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
-  [SchemeSel]  = { col_gray4, col_gray1, col_cyan2 },
-	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
+  [SchemeNorm] = { col_gray3, col_gray1, col_gray1,      col_gray1 },
+  [SchemeSel]  = { col_gray4, col_gray1, col_cyan2,      col_cyan2 },
+  [SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder,  col_urgborder },
 };
 
 /* tagging */
