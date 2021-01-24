@@ -7,7 +7,8 @@ add setgapsex to dwmc
 Patches applied
 ---------------
  - [attachaside](https://dwm.suckless.org/patches/attachaside/) - Make new clients get attached and focused in the stacking area instead of always becoming the new master.
- - [columns](https://dwm.suckless.org/patches/columns/) - Like tile layout, except provides for vertical instead of horizontal master windows.
+ - [cantogglefloating](https://dwm.suckless.org/patches/cantogglefloating/) - Allows disabling focus on floating clients
+ - [columngaps](https://dwm.suckless.org/patches/columngaps/) - Like tile layout, except provides for vertical instead of horizontal master windows.
  - [dwmc](https://dwm.suckless.org/patches/dwmc/) - Simple client to communicate with dwm.
  - [fakefullscreen](https://dwm.suckless.org/patches/fakefullscreen/) - Only allow clients to "fullscreen" into space currently given to them.
  - [fibonacci](https://dwm.suckless.org/patches/fibonacci/) - This patch adds two new layouts (spiral and dwindle) that arranges all windows in Fibonacci tiles.
@@ -17,6 +18,7 @@ Patches applied
  - [hidevacanttags](https://dwm.suckless.org/patches/hide_vacant_tags/) - This patch prevents dwm from drawing tags with no clients on the bar.
  - [moveresizedge](https://dwm.suckless.org/patches/moveresize/) - This change allows you to move and resize dwm's clients using keyboard bindings.
  - [movestack](https://dwm.suckless.org/patches/movestack/) - This plugin allows you to move clients around in the stack and swap them with the master.
+ - [nmaxmaster](https://dwm.suckless.org/patches/nmaxmaster/) - Adds limit to number of clients
  - [noborder](https://dwm.suckless.org/patches/noborder/) - Remove the border when there is only one window visible.
  - [pertag](https://dwm.suckless.org/patches/pertag/) - This patch keeps layout, mwfact, barpos and nmaster per tag.
  - [restartsig](https://dwm.suckless.org/patches/restartsig/) - dwm can now be restarted.
