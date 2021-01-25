@@ -2467,11 +2467,11 @@ resetcanfocusfloating()
 	unsigned int i, n;
 	Client *c;
 
-	for (n = 0, c = selmon->clients->next; c; c = c->next, n++);
+	for (n = 0, c = selmon->clients; c; c = c->next, n++);
 	if (n == 0)
 		return;
 
-	for (i = 0, c = selmon->clients->next; c; c = c->next, i++)
+	for (i = 0, c = selmon->clients; c; c = c->next, i++)
     if (c->isfloating)
       c->cantfocus = 0;
 
@@ -2484,11 +2484,11 @@ togglecanfocusfloating(const Arg *arg)
 	unsigned int i, n, y;
 	Client *c, *tmp;
 
-	for (n = 0, c = selmon->clients->next; c; c = c->next, n++);
+	for (n = 0, c = selmon->clients; c; c = c->next, n++);
 	if (n == 0)
 		return;
 
-	for (i = 0, y = 0, c = selmon->clients->next; c; c = c->next, i++)
+	for (i = 0, y = 0, c = selmon->clients; c; c = c->next, i++)
     if (c->isfloating) {
       c->cantfocus = !c->cantfocus;
       y++;

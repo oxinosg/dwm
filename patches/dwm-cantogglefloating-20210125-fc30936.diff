@@ -1,6 +1,6 @@
-From e752d6806ff8bb4fa23435b448affce3b0a40838 Mon Sep 17 00:00:00 2001
+From fc309367ecf8388a77f899d7f007524a84ed3ab7 Mon Sep 17 00:00:00 2001
 From: Georgios Oxinos <georgios.oxinos.extern@elinvar.de>
-Date: Sun, 24 Jan 2021 16:05:58 +0100
+Date: Mon, 25 Jan 2021 10:24:45 +0100
 Subject: [PATCH] [dwm][patch] patch that allows disabling focus on floating
  clients
 
@@ -22,7 +22,7 @@ index 1c0b587..005fb5d 100644
  	{ MODKEY,                       XK_Tab,    view,           {0} },
  	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 diff --git a/dwm.c b/dwm.c
-index 4465af1..426262e 100644
+index 4465af1..d6417d6 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -92,7 +92,7 @@ struct Client {
@@ -104,11 +104,11 @@ index 4465af1..426262e 100644
 +	unsigned int i, n;
 +	Client *c;
 +
-+	for (n = 0, c = selmon->clients->next; c; c = c->next, n++);
++	for (n = 0, c = selmon->clients; c; c = c->next, n++);
 +	if (n == 0)
 +		return;
 +
-+	for (i = 0, c = selmon->clients->next; c; c = c->next, i++)
++	for (i = 0, c = selmon->clients; c; c = c->next, i++)
 +    if (c->isfloating)
 +      c->cantfocus = 0;
 +
@@ -121,11 +121,11 @@ index 4465af1..426262e 100644
 +	unsigned int i, n, y;
 +	Client *c, *tmp;
 +
-+	for (n = 0, c = selmon->clients->next; c; c = c->next, n++);
++	for (n = 0, c = selmon->clients; c; c = c->next, n++);
 +	if (n == 0)
 +		return;
 +
-+	for (i = 0, y = 0, c = selmon->clients->next; c; c = c->next, i++)
++	for (i = 0, y = 0, c = selmon->clients; c; c = c->next, i++)
 +    if (c->isfloating) {
 +      c->cantfocus = !c->cantfocus;
 +      y++;
