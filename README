@@ -7,13 +7,14 @@ add setgapsex to dwmc
 Patches applied
 ---------------
  - [attachaside](https://dwm.suckless.org/patches/attachaside/) - Make new clients get attached and focused in the stacking area instead of always becoming the new master.
- - [cantogglefloating](https://dwm.suckless.org/patches/cantogglefloating/) - Allows disabling focus on floating clients
+ - [canfocusfloating](https://dwm.suckless.org/patches/canfocusfloating/) - Allows disabling focus on floating clients
  - [columngaps](https://dwm.suckless.org/patches/columngaps/) - Like tile layout, except provides for vertical instead of horizontal master windows.
  - [dwmc](https://dwm.suckless.org/patches/dwmc/) - Simple client to communicate with dwm.
  - [fakefullscreen](https://dwm.suckless.org/patches/fakefullscreen/) - Only allow clients to "fullscreen" into space currently given to them.
  - [fibonacci](https://dwm.suckless.org/patches/fibonacci/) - This patch adds two new layouts (spiral and dwindle) that arranges all windows in Fibonacci tiles.
  - [float border color](https://dwm.suckless.org/patches/float_border_color/) - Simple client to communicate with dwm.
  - [focusonclick](https://dwm.suckless.org/patches/focusonclick/) - Switch focus only by mouse click.
+ - [hideborder](https://dwm.suckless.org/patches/hideborder/) - Patch that turns border color of active client to the background color
  - [gaplessgrid](https://dwm.suckless.org/patches/gaplessgrid/) - Layout for dwm, which arranges the windows in a grid
  - [hidevacanttags](https://dwm.suckless.org/patches/hide_vacant_tags/) - This patch prevents dwm from drawing tags with no clients on the bar.
  - [moveresizedge](https://dwm.suckless.org/patches/moveresize/) - This change allows you to move and resize dwm's clients using keyboard bindings.
