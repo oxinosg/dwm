@@ -174,7 +174,6 @@ typedef struct {
 	const char *title;
 	unsigned int tags;
 	int isfloating;
-  int cantfocus;
 	int isterminal;
 	int noswallow;
 	int monitor;
@@ -2479,8 +2478,8 @@ resetcanfocusfloating()
 		return;
 
 	for (i = 0, c = selmon->clients; c; c = c->next, i++)
-    if (c->isfloating)
-      c->cantfocus = 0;
+		if (c->isfloating)
+			c->cantfocus = 0;
 
 	arrange(selmon);
 }
@@ -2488,27 +2487,22 @@ resetcanfocusfloating()
 void
 togglecanfocusfloating(const Arg *arg)
 {
-	unsigned int i, n, y;
-	Client *c, *tmp;
+	unsigned int n;
+	Client *c;
 
-	for (n = 0, c = selmon->clients; c; c = c->next, n++);
-	if (n == 0)
-		return;
+	for (n = 0, c = selmon->clients; c; c = c->next, n++)
+		if (c->isfloating)
+			c->cantfocus = !c->cantfocus;
+		else
+			n++;
 
-	for (i = 0, y = 0, c = selmon->clients; c; c = c->next, i++)
-    if (c->isfloating) {
-      c->cantfocus = !c->cantfocus;
-      y++;
-    }
+	if (n && selmon->sel->isfloating) {
+		for (c = selmon->sel; c && c->isfloating; c = c->next);
+		if (!c)
+			for (c = selmon->clients; c && c->isfloating; c = c->next);
 
-  if (y && selmon->sel->isfloating) {
-    tmp = selmon->clients;
-    while (!tmp || tmp->isfloating) {
-      tmp = tmp->next;
-    }
-
-    focus(tmp);
-  }
+		focus(c);
+	}
 
 	arrange(selmon);
 }
