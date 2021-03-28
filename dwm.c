@@ -1081,6 +1081,8 @@ drawbar(Monitor *m)
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+ 			if (m->sel->issticky)
+ 				drw_polygon(drw, x + boxs, m->sel->isfloating ? boxs * 2 + boxw : boxs, stickyiconbb.x, stickyiconbb.y, boxw, boxw * stickyiconbb.y / stickyiconbb.x, stickyicon, LENGTH(stickyicon), Nonconvex, m->sel->tags & m->tagset[m->seltags]);
 		} else {
 			drw_setscheme(drw, scheme[SchemeNorm]);
 			drw_rect(drw, x, 0, w, bh, 1, 1);
@@ -2497,9 +2499,7 @@ togglecanfocusfloating(const Arg *arg)
 			n++;
 
 	if (n && selmon->sel->isfloating) {
-		for (c = selmon->sel; c && c->isfloating; c = c->next);
-		if (!c)
-			for (c = selmon->clients; c && c->isfloating; c = c->next);
+		c = nexttiled(selmon->clients);
 
 		focus(c);
 	}
