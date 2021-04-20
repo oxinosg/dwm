@@ -1037,10 +1037,11 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 void
 drawbar(Monitor *m)
 {
-	int x, w, tw = 0, stw = 0;
+	int x, w, tw = 0, stw = 0, hcf = 0;
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
+	char *text = "/";
 	Client *c;
 
 	if(showsystray && m == systraytomon(m))
@@ -1050,6 +1051,12 @@ drawbar(Monitor *m)
 	if (m == selmon || 1) { /* status is only drawn on selected monitor */
 		tw = m->ww - drawstatusbar(m, bh, stext);
 	}
+
+	for (c = m->clients; c; c = c->next)
+		if (c->cantfocus) {
+			hcf = 1;
+			break;
+		}
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
@@ -1081,8 +1088,17 @@ drawbar(Monitor *m)
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
- 			if (m->sel->issticky)
- 				drw_polygon(drw, x + boxs, m->sel->isfloating ? boxs * 2 + boxw : boxs, stickyiconbb.x, stickyiconbb.y, boxw, boxw * stickyiconbb.y / stickyiconbb.x, stickyicon, LENGTH(stickyicon), Nonconvex, m->sel->tags & m->tagset[m->seltags]);
+			if (m->sel->issticky)
+				drw_polygon(drw, x + boxs, m->sel->isfloating ? boxs * 2 + boxw : boxs, stickyiconbb.x, stickyiconbb.y, boxw, boxw * stickyiconbb.y / stickyiconbb.x, stickyicon, LENGTH(stickyicon), Nonconvex, m->sel->tags & m->tagset[m->seltags]);
+			if (hcf) {
+				drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+				/*x = drw_text(drw, x, boxw, boxw / 2, bh, boxw, text, 0);*/
+/*drw_rect(Drw *drw, int x, int y, unsigned int w, unsigned int h, int filled, int t);*/
+/*drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, const char *text, int invert);*/
+				drw_rect(drw, x + boxs - boxw, bh - boxw - 2, boxw, boxw, 1, 0);
+				/*drw_text(drw, x - boxw * 3, boxw / 2, boxw / 12 * 5, boxw * 1.5, lrpad / 2, text, 0);*/
+				drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+			}
 		} else {
 			drw_setscheme(drw, scheme[SchemeNorm]);
 			drw_rect(drw, x, 0, w, bh, 1, 1);
