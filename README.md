@@ -6,6 +6,7 @@ add setgapsex to dwmc
 
 Patches applied
 ---------------
+ - [aspectresize](https://dwm.suckless.org/patches/aspectresize/) - Resize the window with its aspect ratio remain constant
  - [attachaside](https://dwm.suckless.org/patches/attachaside/) - Make new clients get attached and focused in the stacking area instead of always becoming the new master.
  - [canfocusfloating](https://dwm.suckless.org/patches/canfocusfloating/) - Allows disabling focus on floating clients
  - [columngaps](https://dwm.suckless.org/patches/columngaps/) - Like tile layout, except provides for vertical instead of horizontal master windows.
