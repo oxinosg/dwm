@@ -2531,18 +2531,30 @@ void
 togglecanfocusfloating(const Arg *arg)
 {
 	unsigned int n;
-	Client *c;
+	Client *c, *cf = NULL;
 
-	for (n = 0, c = selmon->clients; c; c = c->next, n++)
-		if (c->isfloating)
-			c->cantfocus = !c->cantfocus;
-		else
-			n++;
+	if (!selmon->sel)
+		return;
 
-	if (n && selmon->sel->isfloating) {
-		c = nexttiled(selmon->clients);
+	for (c = selmon->clients; c; c = c->next)
+		if (c->cantfocus == 1) {
+			cf = c;
+		}
 
-		focus(c);
+	if (cf) {
+		resetcanfocusfloating();
+		focus(cf);
+	} else {
+		for (n = 0, c = selmon->clients; c; c = c->next)
+			if (c->isfloating)
+				c->cantfocus = !c->cantfocus;
+			else
+				n++;
+
+		if (n && selmon->sel->isfloating) {
+			c = nexttiled(selmon->clients);
+			focus(c);
+		}
 	}
 
 	arrange(selmon);
