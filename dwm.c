@@ -287,7 +287,9 @@ static void updatebarpos(Monitor *m);
 static void updatebars(void);
 static void updateclientlist(void);
 static int updategeom(void);
+static void updatefloatingwmname();
 static void updatenumlockmask(void);
+static void updateselclientwmname();
 static void updatesizehints(Client *c);
 static void updatestatus(void);
 static void updatesystray(void);
@@ -316,6 +318,7 @@ static pid_t winpid(Window w);
 static Systray *systray =  NULL;
 static Client *prevzoom = NULL;
 static const char broken[] = "broken";
+static const char floatingclientname[] = " dwmflc";
 static char stext[1024];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
@@ -2485,7 +2488,37 @@ togglefloating(const Arg *arg)
 
   resetcanfocusfloating();
 
+  updatefloatingwmname();
+
 	arrange(selmon);
+}
+
+void
+updateselclientwmname()
+{
+   Atom utf8string = XInternAtom(dpy, "UTF8_STRING", False);
+   XChangeProperty(dpy, selmon->sel->win, netatom[NetWMName], utf8string, 8, PropModeReplace, (unsigned char *) selmon->sel->name, strlen(selmon->sel->name));
+}
+
+// function used to append `floatingclientname` to WM_NAME if client is floating
+void
+updatefloatingwmname()
+{
+   if (!selmon->sel)
+       return;
+
+   char *cf = strstr(selmon->sel->name, floatingclientname);
+   if (selmon->sel->isfloating) {
+       if (cf == NULL) {
+         strcat(selmon->sel->name, floatingclientname);
+           updateselclientwmname();
+       }
+   } else {
+       if (cf != NULL) {
+         selmon->sel->name[strlen(floatingclientname)] = '\0';
+           updateselclientwmname();
+       }
+   }
 }
 
 void
@@ -3022,6 +3055,8 @@ updatetitle(Client *c)
 		gettextprop(c->win, XA_WM_NAME, c->name, sizeof c->name);
 	if (c->name[0] == '\0') /* hack to mark broken clients */
 		strcpy(c->name, broken);
+
+  updatefloatingwmname();
 }
 
 void

@@ -223,6 +223,11 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 	                       DefaultColormap(drw->dpy, drw->screen),
 	                       clrname, dest))
 		die("error, cannot allocate color '%s'", clrname);
+
+  // Fix transparent borders
+  // When terminal has transparency then its borders also become transparent.
+  // Fix it by removing transparency from any pixels drawn.
+  dest->pixel |= 0xff << 24;
 }
 
 /* Wrapper to create color schemes. The caller has to call free(3) on the
